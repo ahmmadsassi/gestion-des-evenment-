@@ -1,6 +1,6 @@
 import { AuthService } from './../auth.service';
 import { Router, ɵassignExtraOptionsToRouter } from '@angular/router';
-
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { Component, OnInit } from '@angular/core';
 import { user } from 'src/models/user.model';
@@ -12,34 +12,35 @@ import { user } from 'src/models/user.model';
 })
 export class SignInComponent implements OnInit {
 
- user = new user();
- public users : any = [];
- erreur =0;
+  loginForm: FormGroup;
 
-  constructor(private AuthService : AuthService,public router: Router) { }
+  constructor(private authService : AuthService,public router: Router) { }
+  submitted = false;
+    errorMessage = '';
+    isLoggedin = false;
+    isLoginFailed = false;
 
   ngOnInit(): void {
-    this.fetchalluserss();
+    this.loginForm = new FormGroup({
+      userName: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+  });
+
+
 }
-
-  fetchalluserss() {
-    this.AuthService.getalluser().subscribe((data:{}) => {
-      this.users = data;
-
-    })
-
-  }
-
-onsignin(){
-
-let isValidUser: Boolean = this.AuthService.SignIn(this.user,this.users);
-    console.log("valid user "+isValidUser);
-    if (isValidUser)
-    {
-      console.log("isadmin "+this.AuthService.isAdmin());
-      this.router.navigate(['/events']);
-    }
-      else
-        this.erreur = 1;
+onSubmit(){
+  this.submitted = true;
+  this.authService.login(this.loginForm.value.userName, this.loginForm.value.password).subscribe(
+      data=>{
+          this.isLoggedin = true
+          this.router.navigate(['/events']);
+      },
+      error=>{
+          console.log(error);
+          this.errorMessage = error;
+          this.isLoggedin = false;
+          this.isLoginFailed = true;
+      }
+  );
 }
 }

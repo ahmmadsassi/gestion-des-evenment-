@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Grayscale - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/fontawesome.css">
+       <link rel="stylesheet" href="/assets/vendors/css/glightbox.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+       <!-- <link href="css/styles.css" rel="stylesheet" /> -->.
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Tek-up clubs </a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+  <form class="form-horizontal shadow p-3 mb-5 bg-white rounded " #f="ngForm" (ngSubmit)="f.form.valid && addevenment(name,type1,adress,dateevenment,prix,nbrp,image)"
+          >
+          <div class="row">
+                  <div class="col-6">
+                          <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Name" #name
+                                          ngModel name="name">
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="type d'evenment" #type1
+                                    ngModel name="type">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder=" adresse d 'evenment" #adress
+                              ngModel name="adress">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="date d'evenment" #dateevenment
+                        ngModel name="dateeve">
+              </div>
+                           <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="prix" name="prix"
+                                          #prix ngModel rows="5" >
+                          </div>
+                          <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="nombre place disponible" name="nbrp" #nbrp
+                                          ngModel>
+                          </div>
+                          <div class="form-group">
+                                  <input type="file" class="form-control" placeholder="Evenment Picture" #image
+                                          accept="image/*" name="image"
+                                          (change)="handleFileInput($any($event).target.files)">
+                          </div>
+                  </div>
+                  <div class="col-6">
+                          <h4 class="text-center">Image preview</h4>
+                          <img [src]="imageUrl" style="width:400px;height: 300px;">
+
+                  </div>
+
+          </div>
+          <div class="row">
+                  <div class="col-6">
+                          <input type="submit" class=" btn btn-primary" value="Add Club">
+                  </div>
+          </div>
+  </form>
+  <hr>
+  <div class="row">
+          <div class="col-3 align-left" *ngFor="let ev of evenments">
+                  <div class="card shadow p-3 mb-5 bg-white rounded">
+                          <div class="card-body">
+                                  <h5 class="card-title">{{ev.nom}}</h5>
+                                  <img src ="data:image/png;base64,{{ev.imageevenment}}" class="img-responsive"
+                                          height="150px" width="200px" alt="Image">
+                                 <p class="card-text"> {{ev.date}}</p>
+                                  <p class="card-text"> {{ev.adresse}}</p>
+                                  <p class="card-text"> {{ev.prix}}</p>
+                                  <p class="card-text"> {{ev.type}}</p>
+                                  <input type="hidden" value={{ev.id}} #eveid>
+                                  <div class="row">
+                                    <div class="col-6">
+                                            <button class="btn btn-secondary" (click)="edit(eveid)">Edit</button>
+                                    </div>
+                                    <div class="col-6">
+                                            <button class="btn btn-danger"
+                                                    (click)="deleve(eveid)">Remove</button>
+                                    </div>
+                            </div>
+
+                          </div>
+                  </div>
+          </div>
+  </div>
+</div>
+</body>
+</html>

@@ -73,22 +73,30 @@
     <div id="intro" class="bg-image shadow-2-strong">
       <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
         <div class="container">
-        <div class="alert alert-danger" *ngIf="erreur == 1" >
-           <strong>invalide username or password</strong>
-        </div>
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
-              <form class="bg-white rounded shadow-5-strong p-5">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="bg-white rounded shadow-5-strong p-5">
+
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" name="username"  id="form1Example1" class="form-control"   [(ngModel)]="user.username" />
+                  <input type="email"   id="form1Example1" class="form-control"  formControlName="userName" />
                   <label class="form-label" for="form1Example1">Username</label>
+                  <div class="alert alert-danger" *ngIf="loginForm.get('userName').invalid
+                  && loginForm.get('userName').touched">
+                  <div *ngIf="loginForm.get('userName').errors.required">
+                    User name is required
+                  </div>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" name="password" id="form1Example2" class="form-control" [(ngModel)]="user.password" />
+                  <input type="password" name="password" id="form1Example2" class="form-control"formControlName="password" />
                   <label class="form-label" for="form1Example2">Password</label>
+                  <div class="alert alert-danger" *ngIf="loginForm.get('password').invalid
+                  && loginForm.get('password').touched">
+                  <div *ngIf="loginForm.get('password').errors.required">
+                    Password is required
+                  </div>
                 </div>
 
                 <!-- 2 column grid layout for inline styling -->
@@ -102,17 +110,26 @@
                       </label>
                     </div>
                   </div>
-
                   <div class="col text-center">
                     <!-- Simple link -->
                     <a href="#!">Forgot password?</a>
                   </div>
                 </div>
+                <button type="submit" [disabled]="loginForm.invalid"  class="btn btn-primary btn-block">Sign in</button>
+                <div class="alert alert-warning" *ngIf="submitted && isLoginFailed">
+                  Login failed- {{ errorMessage }}
+                </div>
 
-                <button type="submit" class="btn btn-primary btn-block"  (click)="onsignin()" >Sign in</button>
-                <!-- Submit button -->
-              </form>
-            </div>
+    </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-center links">
+        Don't have an account?<a routerLink="/signup">Sign Up</a>
+      </div>
+      </div>
+    </form>
+
+              </div>
           </div>
         </div>
       </div>
@@ -121,7 +138,7 @@
   </header>
   <!--Main Navigation-->
 
-  <!--Footer-->
+
 
 </body>
 </html>

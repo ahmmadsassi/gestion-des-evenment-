@@ -6,6 +6,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Grayscale - Start Bootstrap Theme</title>
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/fontawesome.css">
+        <link rel="stylesheet" type="text/html" href="/assets/vendors/css/glightbox.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -26,6 +30,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                      <p> {{userName}} logged in with {{userRoles}}</p>
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
@@ -38,8 +43,8 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Pro Events</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
+                        <h1 class="mx-auto my-0 text-uppercase">Tek up clubs</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
                         <a class="btn btn-primary" routerLink="/signin" >Get Started</a>
                     </div>
                 </div>
@@ -50,12 +55,6 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -68,8 +67,8 @@
                     <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="/assets/img/home2.jpg" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
-                            <h4>Shoreline</h4>
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                            <h4>iPhone13</h4>
+                            <p class="text-black-50 mb-0">The new iPhone 13 is official, launching alongside the 13 mini, 13 Pro and 13 Pro Max, and featuring a 120Hz screen and the A15 Bionic chip</p>
                         </div>
                     </div>
                 </div>
@@ -91,8 +90,10 @@
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Mountains</h4>
-                                    <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
+                                    <h4 class="text-white">WORLD LEADERS IN
+                                      LIVE ROBOT ENTERTAINMENT</h4>
+                                    <p class="mb-0 text-white-50"><
+                                      Cyberstein Robots are world leaders in the sphere of live robotic entertainment. A dynamic company based in the UK, they have been performing on the world stage since 1996, and their creations have dazzled audiences in over 50 countries worldwide. In that time, they have performed at major world events and entertained presidents, prime ministers and royalty./p>
                                     <hr class="d-none d-lg-block mb-0 me-0" />
                                 </div>
                             </div>
@@ -107,7 +108,6 @@
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -117,10 +117,6 @@
                         <!-- to get an API token!-->
                         <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
-                            <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
-                            </div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
                             <!-- Submit success message-->
@@ -146,57 +142,97 @@
             </div>
         </section>
         <!-- Contact-->
-        <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Address</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Phone</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+1 (555) 902-8832</div>
-                            </div>
-                        </div>
-                    </div>
+        <footer class="footer">
+          <div class="container">
+            <div class="row">
+              <!-- CONTENT FOR THE MOBILE NUMBER  -->
+              <div class="col-md-4 col-lg-4 contact-box pt-1 d-md-block d-lg-flex d-flex">
+                <div class="contact-box__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone-call" viewBox="0 0 24 24" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+                    <path d="M15 7a2 2 0 0 1 2 2" />
+                    <path d="M15 3a6 6 0 0 1 6 6" />
+                  </svg>
                 </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                <div class="contact-box__info">
+                  <a href="#" class="contact-box__info--title">+1 718365413</a>
+                  <p class="contact-box__info--subtitle">  Mon-Fri 9am-6pm</p>
                 </div>
+              </div>
+              <!-- CONTENT FOR EMAIL  -->
+              <div class="col-md-4 col-lg-4 contact-box pt-1 d-md-block d-lg-flex d-flex">
+                <div class="contact-box__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail-opened" viewBox="0 0 24 24" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <polyline points="3 9 12 15 21 9 12 3 3 9" />
+                    <path d="M21 9v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
+                    <line x1="3" y1="19" x2="9" y2="13" />
+                    <line x1="15" y1="13" x2="21" y2="19" />
+                  </svg>
+                </div>
+                <div class="contact-box__info">
+                  <a href="#" class="contact-box__info--title">ProEvent@gmail.com</a>
+                  <p class="contact-box__info--subtitle">Online support</p>
+                </div>
+              </div>
+              <!-- CONTENT FOR LOCATION  -->
+              <div class="col-md-4 col-lg-4 contact-box pt-1 d-md-block d-lg-flex d-flex">
+                <div class="contact-box__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-2" viewBox="0 0 24 24" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <line x1="18" y1="6" x2="18" y2="6.01" />
+                    <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />
+                    <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />
+                    <line x1="9" y1="4" x2="9" y2="17" />
+                    <line x1="15" y1="15" x2="15" y2="20" />
+                  </svg>
+                </div>
+                <div class="contact-box__info">
+                  <a href="#" class="contact-box__info--title">Tunis</a>
+                  <p class="contact-box__info--subtitle">NY 10012, US</p>
+                </div>
+              </div>
             </div>
-        </section>
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2021</div></footer>
+          </div>
+
+          <!-- START THE SOCIAL MEDIA CONTENT  -->
+          <div class="footer-sm" style="background-color: #212121;">
+            <div class="container">
+              <div class="row py-4 text-center text-white">
+                <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+                  connect with us on social media
+                </div>
+                <div class="col-lg-7 col-md-6">
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-github"></i></a>
+                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- START THE CONTENT FOR THE CAMPANY INFO -->
+
+          <!-- START THE COPYRIGHT INFO  -->
+          <div class="footer-bottom pt-5 pb-5">
+            <div class="container">
+              <div class="row text-center text-white">
+                <div class="col-12">
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-      <script src="/assets/js/scripts.js"></script>
+        <script src="/assets/js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+         </body>
 </html>

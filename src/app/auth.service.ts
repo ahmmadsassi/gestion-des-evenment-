@@ -1,80 +1,74 @@
 import { Injectable } from '@angular/core';
 import { user } from 'src/models/user.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 import { Router, ɵassignExtraOptionsToRouter } from '@angular/router';
-
+const headers = new HttpHeaders().set('Content-Type', 'application/json');
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  endPoint ='http://localhost:8080';
+  baseUrl ='http://localhost:8080/auth/';
 
   public loggedUser:string;
   public isloggedIn: Boolean = false;
   public roles:string[];
 
   constructor(
-    public router :Router,private httpClient: HttpClient
+    public router :Router,private http: HttpClient
   ) { }
-  httpHeader = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
 
-
-  getalluser(): Observable<user> {
-    return this.httpClient
-      .get<user>(this.endPoint + '/api/user')
-      .pipe(retry(1), catchError(this.httpError));
+  signup(user: user): Observable<any>{
+    //console.log('In AuthService');
+    return this.http.post(this.baseUrl + 'signup', user, { headers, responseType: 'text'})
+                    .pipe(catchError(this.handleError));
+  }
+  login(user: string, password: string){
+    // console.log('In AuthService -  login');
+    return this.http.post<any>(this.baseUrl + 'login',
+      {userName: user, password:password}, {headers})
+      .pipe(catchError(this.handleError),
+        map(userData => {
+          sessionStorage.setItem("username", user);
+          let tokenStr = "Bearer " + userData.token;
+          console.log("Token---  " + tokenStr);
+          sessionStorage.setItem("token", tokenStr);
+          sessionStorage.setItem("roles", JSON.stringify(userData.roles));
+          return userData;
+        })
+      );
   }
 
-  logout() {
-    this.isloggedIn= false;
-    this.loggedUser = undefined;
-    this.roles = undefined;
-    localStorage.removeItem('loggedUser');
-    localStorage.setItem('isloggedIn',String(this.isloggedIn));
-    this.router.navigate(['/signin']);
+  logout(){
+    sessionStorage.clear()
+    this.router.navigate(['/login']);
   }
-  SignIn(user :user,users :user []):Boolean{
-    let validUser: Boolean = false;
-    users.forEach((curUser) => {
-      console.log(curUser.username);
-      console.log(user.username)
-      if(user.username ===curUser.username && user.password===curUser.password) {
-        console.log('aaaaaaaaaa')
-        validUser = true;
-        this.loggedUser = curUser.username;
-        this.isloggedIn = true;
-        this.roles = curUser.roles;
-        localStorage.setItem('loggedUser',this.loggedUser);
-        localStorage.setItem('isloggedIn',String(this.isloggedIn));
-      }
-    });
 
-     return validUser;
+  isLoggedIn(): boolean{
+    return sessionStorage.getItem('username') !== null;
   }
-  isAdmin():Boolean{
-    if (!this.roles) //this.roles== undefiened
-       return false;
-    return (this.roles.indexOf('ADMIN') >-1);
 
-  }
-  httpError(error: { error: { message: string }; status: any; message: any }) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client side error
-      msg = error.error.message;
-    } else {
-      // server side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  private handleError(httpError: HttpErrorResponse) {
+    let message:string = '';
+
+    if (httpError.error instanceof ProgressEvent) {
+      console.log('in progrss event')
+      message = "Network error";
     }
-    console.log(msg);
-    return throwError(msg);
+    else {
+      message = httpError.error.message;
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${httpError.status}, ` +
+        `body was: ${httpError.error}`);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(message);
   }
+
+
 }
 

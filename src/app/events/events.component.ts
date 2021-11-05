@@ -7,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+  userName: string;
+  userRoles: string;
 
 
-  signinuser : string;
 
   constructor(public authService : AuthService) { }
 
   ngOnInit(): void {
+    this.userName = sessionStorage.getItem("username");
+      this.userRoles = sessionStorage.getItem("roles");
   }
 
   logout(){

@@ -3,7 +3,43 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  baseUrl:"http://localhost:8080",
+  addToCartUrl : "/user/addToCart",
+  viewCartUrl : "/user/viewCart",
+  updateCartUrl : "/user/updateCart",
+  deleteCartUrl: "/user/delCart",
+  addAddressUrl : "/user/addAddress",
+  viewAddressUrl : "/user/getAddress",
+  evenmentUrl : "/evenment/getevenments",
+  addevenmentUrl :  "/evenment/addEvenment",
+  deleteevenmentUrl : "/evenment/deletevenment",
+  updateevenmentUrl : "/evenment/updateevenment" ,
+  viewOrderUrl : "/admin/viewOrders",
+  updateOrderUrl : "/admin/updateOrder",
+  placeOrderUrl : "/user/placeOrder",
+  logoutUrl : "/home/logout",
+  addinscription : "/inscription/add",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };
 
 /*
